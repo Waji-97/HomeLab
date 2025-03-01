@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: 'https://github.com/Waji-97/HomeLab.git'
     targetRevision: 'main'
-    path: 'deployments/post'
+    path: 'kubernetes/deployments/post'
   syncPolicy:
     automated:
       selfHeal: true

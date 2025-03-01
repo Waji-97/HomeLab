@@ -83,5 +83,7 @@ configmap/argocd-cm patched
 ### Create Root Application for App-of-Apps
 Deploy the root application under respective cluster's directory
 ```bash
-
+➜  in-cluster git:(main) k apply -f application.yaml 
+Warning: metadata.finalizers: "resources-finalizer.argocd.argoproj.io": prefer a domain-qualified finalizer name to avoid accidental conflicts with other finalizer writers
+application.argoproj.io/homelab-root created
 ```
