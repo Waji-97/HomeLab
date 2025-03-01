@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - ../../components/kube-system
 - ../../components/monitoring
-- ../../components/longhorn
+- ../../components/openebs
