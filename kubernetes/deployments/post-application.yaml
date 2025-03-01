@@ -5,7 +5,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-  name: homelab-pre
+  name: homelab-post
   namespace: argocd
 spec:
   destination:
