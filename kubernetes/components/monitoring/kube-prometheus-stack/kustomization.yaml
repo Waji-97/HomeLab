@@ -9,6 +9,8 @@ helmCharts:
     prometheusOperator:
       admissionWebhooks:
         enabled: false
+      tls:
+        enabled: false
     fullnameOverride: "prometheus-stack"
     defaultRules:
       create: false
