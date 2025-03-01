@@ -20,5 +20,5 @@ helmCharts:
       resizerReplicaCount: 1
       snapshotterReplicaCount: 1
   releaseName: longhorn
-  version: 1.8.0
+  version: 1.7.3
   repo: https://charts.longhorn.io
