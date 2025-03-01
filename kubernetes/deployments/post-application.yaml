@@ -20,16 +20,16 @@ spec:
     automated:
       selfHeal: true
       prune: true
-  ignoreDifferences:
-    - group: monitoring.coreos.com
-      kind: ServiceMonitor
-      jqPathExpressions:
-      - .metadata.annotations
-    - group: monitoring.coreos.com
-      kind: Prometheus
-      jqPathExpressions:
-      - .spec.remoteWrite[]?.writeRelabelConfigs[]?.action
-    - group: "rbac.authorization.k8s.io"
-      kind: ClusterRole
-      jqPathExpressions:
-      - .rules[] | select (.apiGroups == ["discovery.k8s.io"])
+  # ignoreDifferences:
+  #   - group: monitoring.coreos.com
+  #     kind: ServiceMonitor
+  #     jqPathExpressions:
+  #     - .metadata.annotations
+  #   - group: monitoring.coreos.com
+  #     kind: Prometheus
+  #     jqPathExpressions:
+  #     - .spec.remoteWrite[]?.writeRelabelConfigs[]?.action
+  #   - group: "rbac.authorization.k8s.io"
+  #     kind: ClusterRole
+  #     jqPathExpressions:
+  #     - .rules[] | select (.apiGroups == ["discovery.k8s.io"])
