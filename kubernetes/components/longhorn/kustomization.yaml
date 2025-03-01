@@ -10,8 +10,7 @@ helmCharts:
   valuesInline:
     serviceAccount:        ## ==> required for pre-job longhorn
       annotations:
-        argocd.argoproj.io/hook: Sync
-        argocd.argoproj.io/sync-wave: "-1"
+        helm.sh/hook: pre-upgrade
     persistence:
       defaultClass: true
       defaultClassReplicaCount: 1
