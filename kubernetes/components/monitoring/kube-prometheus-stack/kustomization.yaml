@@ -47,19 +47,19 @@ helmCharts:
     prometheus:
       agentMode: false
       thanosService:
-        enabled: true
+        enabled: false
       thanosServiceMonitor: 
-        enabled: true
+        enabled: false
       prometheusSpec:
         # remoteWrite:
         # - url: http://kube-thanos-receive:19291/api/v1/receive
         #   #enableHTTP2: false
-        disableCompaction: true
+        disableCompaction: false
         externalLabels:
           cluster: homelab.local
         retention: 7d
         replicas: 1
-        shards: 2
+        # shards: 2
         storageSpec:
           volumeClaimTemplate:
             spec:
