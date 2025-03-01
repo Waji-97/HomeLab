@@ -25,3 +25,7 @@ spec:
       kind: ServiceMonitor
       jqPathExpressions:
       - .metadata.annotations
+    - group: monitoring.coreos.com
+      kind: Prometheus
+      jqPathExpressions:
+      - .spec.remoteWrite[]?.writeRelabelConfigs[]?.action
