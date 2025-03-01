@@ -29,3 +29,7 @@ spec:
       kind: Prometheus
       jqPathExpressions:
       - .spec.remoteWrite[]?.writeRelabelConfigs[]?.action
+    - group: "rbac.authorization.k8s.io"
+      kind: ClusterRole
+      jqPathExpressions:
+      - .rules[] | select (.apiGroups == ["discovery.k8s.io"])
