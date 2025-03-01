@@ -6,7 +6,7 @@ helmCharts:
 - name: kube-prometheus-stack
   includeCRDs: true
   valuesInline:
-    fullnameOverride: "monitoring-stack"
+    fullnameOverride: "prometheus-stack"
     defaultRules:
       create: false
     grafana:
