@@ -67,28 +67,21 @@ homelab-repo                  Opaque   4      80s
 Verify from the UI
 ![Repo Settings](assets/img/repo.png)
 
+<br>
 
-### Create ApplicationSet for Components
+### Patch ArgoCD ConfigMap
+The following patch is required to:
+- Enable Helm templating using Kustomize
+- Enable App-of-Apps health check for custom resources
+
 ```bash
-➜  homelab.local git:(main) ✗ k apply -f app-set.yaml 
-applicationset.argoproj.io/homelab-appset created
-
-➜  homelab.local git:(main) ✗ k get applicationsets.argoproj.io -n argocd
-NAME             AGE
-homelab-appset   7s
+➜  argocd git:(main) ✗ k patch cm -n argocd argocd-cm --type=merge --patch-file argocd-cm-patch.yaml
+configmap/argocd-cm patched
 ```
 
-<br>
 
-It should create an application for the cluster
-<br>
-![app](assets/img/app.png)
-
-
-> Just a side note -> To enable helm chart rendering for ArgoCD, we need to include the following option in the `argocd-cm` configmap.
+### Create Root Application for App-of-Apps
+Deploy the root application under respective cluster's directory
 ```bash
-➜ k get cm -n argocd argocd-cm -o yaml       
-apiVersion: v1
-data:
-  kustomize.buildOptions: --enable-helm
+
 ```
