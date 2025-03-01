@@ -4,3 +4,4 @@ resources:
 - ../../components/kube-system
 - ../../components/monitoring
 - ../../components/openebs
+- ../../components/longhorn

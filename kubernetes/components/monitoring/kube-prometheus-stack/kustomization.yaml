@@ -1,0 +1,69 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+
+helmCharts:
+- name: kube-prometheus-stack
+  includeCRDs: true
+  valuesInline:
+    fullnameOverride: "monitoring-stack"
+    defaultRules:
+      create: false
+    grafana:
+      enabled: true
+      persistence:
+        enabled: true
+        type: pvc
+        storageClassName: "openebs-hostpath"
+        accessModes:
+          - ReadWriteOnce
+        size: 10Gi
+        finalizers:
+          - kubernetes.io/pvc-protection
+    alertmanager:
+      alertmanagerSpec:
+        useExistingSecret: true
+        configSecret: "alertmanager-prometheus-stack-alertmanager-main"
+        replicas: 1
+        storage: 
+          volumeClaimTemplate:
+            spec:
+              storageClassName: openebs-hostpath
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 10Gi
+    kubeControllerManager:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    kubeEtcd:
+      enabled: true
+    prometheus:
+      agentMode: false
+      thanosService:
+        enabled: true
+      thanosServiceMonitor: 
+        enabled: true
+      prometheusSpec:
+        # remoteWrite:
+        # - url: http://kube-thanos-receive:19291/api/v1/receive
+        #   #enableHTTP2: false
+        disableCompaction: true
+        externalLabels:
+          cluster: homelab.local
+        retention: 7d
+        replicas: 1
+        shards: 2
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: openebs-hostpath
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 20Gi
+            selector: {}
+  releaseName: kube-prometheus-stack
+  version: 69.6.0
+  repo: https://prometheus-community.github.io/helm-charts
