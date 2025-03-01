@@ -5,17 +5,18 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - matrix:
-      generators:
-        - clusters: {}
-        - git:
-            repoURL: 'https://github.com/Waji-97/HomeLab.git'
-            revision: 'main'
-            directories:
-              - path: '../../components/**/*'
+  # - matrix:
+  #     generators:
+  #       - clusters: {}
+    - git:
+        repoURL: 'https://github.com/Waji-97/HomeLab.git'
+        revision: 'main'
+        directories:
+          - path: 'kubernetes/clusters/in-cluster'
   template:
     metadata:
-      name: '{{.name}}-{{path}}-app'
+      name: '{{path}}-app'
+      # name: '{{.name}}-{{path}}-app'
     spec:
       project: default
       source:
@@ -23,7 +24,8 @@ spec:
         targetRevision: 'main'
         path: '{{path}}'
       destination:
-        server: '{{.server}}'
+        server: 'https://kubernetes.default.svc'
+        # server: '{{.server}}'
         namespace: 'argocd'
       syncPolicy:
         automated:
