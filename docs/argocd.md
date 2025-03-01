@@ -78,7 +78,10 @@ NAME             AGE
 homelab-appset   7s
 ```
 
+<br>
+
 It should create an application for the cluster
+<br>
 ![app](assets/img/app.png)
 
 
