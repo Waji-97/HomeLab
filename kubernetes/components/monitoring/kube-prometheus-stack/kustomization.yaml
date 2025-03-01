@@ -14,25 +14,25 @@ helmCharts:
       persistence:
         enabled: true
         type: pvc
-        storageClassName: "openebs-hostpath"
+        storageClassName: "longhorn"
         accessModes:
           - ReadWriteOnce
-        size: 10Gi
+        size: 8Gi
         finalizers:
           - kubernetes.io/pvc-protection
     alertmanager:
       alertmanagerSpec:
-        useExistingSecret: true
-        configSecret: "alertmanager-prometheus-stack-alertmanager-main"
+        # useExistingSecret: true
+        # configSecret: "alertmanager-prometheus-stack-alertmanager-main"
         replicas: 1
         storage: 
           volumeClaimTemplate:
             spec:
-              storageClassName: openebs-hostpath
+              storageClassName: longhorn
               accessModes: ["ReadWriteOnce"]
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 4Gi
     kubeControllerManager:
       enabled: false
     kubeScheduler:
@@ -58,7 +58,7 @@ helmCharts:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: openebs-hostpath
+              storageClassName: longhorn
               accessModes: ["ReadWriteOnce"]
               resources:
                 requests:
