@@ -1,0 +1,6 @@
+creation_rules:
+  - path_regex: kubernetes/components/argocd/repo-secret\.yaml
+    key_groups:
+      - age:
+          - age1mp2c59e4sg6ey3d3fe5erw6ylylhjwfcmw4f827kpfrquxjd0ctsgtpzag
+    encrypted_regex: "^(stringData)$"
