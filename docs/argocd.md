@@ -77,3 +77,15 @@ applicationset.argoproj.io/homelab-appset created
 NAME             AGE
 homelab-appset   7s
 ```
+
+It should create an application for the cluster
+![app](assets/img/app.png)
+
+
+> Just a side note -> To enable helm chart rendering for ArgoCD, we need to include the following option in the `argocd-cm` configmap.
+```bash
+➜ k get cm -n argocd argocd-cm -o yaml       
+apiVersion: v1
+data:
+  kustomize.buildOptions: --enable-helm
+```
