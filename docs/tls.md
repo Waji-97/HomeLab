@@ -1,7 +1,7 @@
 # Default TLS for Ingress Controller
 I miserably failed with cert-manager. Deploying the helm chart with argocd always gave me an tls bad cert error so I opted for the default SSL cert.
 
-Anyways, there is a `default-ssl-certificate` argument in the nginx ingress controller which is enabled and it refers to `ingress-tls` secret inside `argocd` namespace. 
+Anyways, there is a `default-ssl-certificate` argument in the nginx ingress controller which is enabled and it refers to `ingress-tls` secret inside `ingress-nginx` namespace. 
 
 Firstly, the TLS cert is needed. Let's Encrypt is good but Cloudflare offers 15 years free certificate. From the cloudflare dashboard, create a TLS cert.
 
@@ -17,12 +17,12 @@ kubectl create secret tls ingress-tls --key=homek8s.site.key --cert=homek8s.site
 After that sops will be used once again to encrypt the secret before pushing to Github (Of course it will be applied manually)
 
 ```bash
-➜  argocd git:(main) ✗ sops -e -i ingress-tls-secret.yaml 
-➜  argocd git:(main) ✗ sops -d ingress-tls-secret.yaml| kubectl apply -f -
+➜  ingress-nginx git:(main) ✗ sops -e -i ingress-tls-secret.yaml
+➜  ingress-nginx git:(main) ✗ sops -d ingress-tls-secret.yaml| kubectl apply -f -
 secret/ingress-tls created
 
-➜  argocd git:(main) ✗ k get secret -n argocd | grep ingress
-ingress-tls                   kubernetes.io/tls   2      6s
+➜  ingress-nginx git:(main) ✗ k get secret -n ingress-nginx | grep ingress-tls
+ingress-tls               kubernetes.io/tls   2      11s
 ```
 
 ### Ingress Object Config

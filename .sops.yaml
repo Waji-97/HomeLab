@@ -4,7 +4,7 @@ creation_rules:
       - age:
           - age1mp2c59e4sg6ey3d3fe5erw6ylylhjwfcmw4f827kpfrquxjd0ctsgtpzag
     encrypted_regex: "^(stringData)$"
-  - path_regex: kubernetes/components/argocd/ingress-tls-secret\.yaml
+  - path_regex: kubernetes/components/ingress-nginx/ingress-tls-secret\.yaml
     key_groups:
       - age:
           - age1mp2c59e4sg6ey3d3fe5erw6ylylhjwfcmw4f827kpfrquxjd0ctsgtpzag
