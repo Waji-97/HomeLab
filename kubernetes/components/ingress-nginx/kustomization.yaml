@@ -10,6 +10,7 @@ helmCharts:
   includeCRDs: true
   valuesInline:
     controller:
+      allowSnippetAnnotations: true
       service:
         type: LoadBalancer
       extraArgs:
