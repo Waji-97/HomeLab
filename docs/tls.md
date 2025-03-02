@@ -68,3 +68,5 @@ Other than that, the controller needs to mount the above secret and each ingress
       auth_basic "basic-auth";
       auth_basic_user_file /etc/apache2/auth;           ## ==> the path where secret will be mounted
 ```
+
+> Note that snippets settings should be enabled beforehand (refer to ingress-nginx kustomization.yaml)
