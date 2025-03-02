@@ -10,7 +10,7 @@ helmCharts:
   valuesInline:
     controller:
       service:
-        type: NodePort
+        type: LoadBalancer
   releaseName: ingress-nginx
   version: 4.12.0
   repo: https://kubernetes.github.io/ingress-nginx

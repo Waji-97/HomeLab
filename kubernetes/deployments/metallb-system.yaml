@@ -2,10 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "5"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-  name: ingress-nginx-app
+  name: metallb-system-app
   namespace: argocd
 spec:
   destination:
@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: 'https://github.com/Waji-97/HomeLab.git'
     targetRevision: 'main'
-    path: 'kubernetes/components/ingress-nginx'
+    path: 'kubernetes/components/metallb-system'
   syncPolicy:
     automated:
       selfHeal: true
