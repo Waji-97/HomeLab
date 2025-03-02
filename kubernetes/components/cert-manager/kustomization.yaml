@@ -4,5 +4,5 @@ namespace: cert-manager
 resources:
 - ns.yaml
 - manifest.yaml
-- clusterissuer.yaml
+# - clusterissuer.yaml
 
