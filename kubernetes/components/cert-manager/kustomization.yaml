@@ -3,5 +3,13 @@ kind: Kustomization
 namespace: cert-manager
 resources:
 - ns.yaml
-- manifest.yaml
 - clusterissuer.yaml
+
+helmCharts:
+- name: cert-manager
+  includeCRDs: true
+  valuesInline:
+    installCRDs: true
+  releaseName: cert-manager
+  version: v1.17.1
+  repo: https://charts.jetstack.io
