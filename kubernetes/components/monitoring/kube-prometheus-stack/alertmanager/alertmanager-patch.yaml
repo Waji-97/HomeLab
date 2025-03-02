@@ -1,0 +1,18 @@
+- op: add
+  path: /spec/storage
+  value: 
+    volumeClaimTemplate:
+      spec:
+        storageClassName: longhorn
+        resources:
+          requests:
+            storage: 4Gi
+
+
+# - op: add
+#   path: /spec/storage/volumeClaimTemplate/spec/resources/requests/storage
+#   value: 4Gi
+
+- op: replace
+  path: /spec/replicas
+  value: 1

@@ -2,10 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-  name: homelab-pre
+  name: longhorn-app
   namespace: argocd
 spec:
   destination:
@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: 'https://github.com/Waji-97/HomeLab.git'
     targetRevision: 'main'
-    path: 'kubernetes/deployments/pre'
+    path: 'kubernetes/components/longhorn'
   syncPolicy:
     automated:
       selfHeal: true
