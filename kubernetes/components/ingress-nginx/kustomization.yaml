@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: ingress-nginx
 resources:
 - ns.yaml
+- ingress-resources.yaml
 
 helmCharts:
 - name: ingress-nginx
