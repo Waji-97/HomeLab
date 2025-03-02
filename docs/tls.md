@@ -30,3 +30,41 @@ Each ingress object needs to have the following annotation
 ```bash
 nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 ```
+
+### Basic Auth for Ingress
+As the Ingress is exposed externally, anyone who knows the domain name can easily view the applications without auth. For a little 'safety', ingress offers a basic auth. 
+
+To set up the user
+```bash
+➜ sudo apt install apache2-utils
+
+➜ htpasswd -c auth <username>
+New password: 
+Re-type new password: 
+Adding password for user <username>
+
+➜ ls auth
+auth
+```
+
+Then the above data needs to go in a Secret resource
+```bash
+➜ k create secret generic basic-auth --from-file=auth -n ingress-nginx -o yaml --dry-run=client
+apiVersion: v1
+data:
+  auth: <base64 encrypted password>
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: basic-auth
+  namespace: ingress-nginx
+```
+
+> Used sops to deploy the above secret manually as well
+
+Other than that, the controller needs to mount the above secret and each ingress object will require the below annotation
+```bash
+    nginx.ingress.kubernetes.io/server-snippet: |
+      auth_basic "basic-auth";
+      auth_basic_user_file /etc/apache2/auth;           ## ==> the path where secret will be mounted
+```

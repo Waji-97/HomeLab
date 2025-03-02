@@ -6,6 +6,9 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PostSync
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      auth_basic "basic-auth";
+      auth_basic_user_file /etc/apache2/auth;
 spec:
   ingressClassName: nginx
   rules:
